@@ -1,0 +1,25 @@
+<table class="table">
+
+    <thead class="table-dark">
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Sales Volume</th>
+            <th>Met Quota?</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let curSalePer of salesPersonList" [ngClass]="{'highlight': curSalePer.salesVolume >= 5000}">
+            <td>{{ curSalePer.firstName }}</td>
+            <td>{{ curSalePer.lastName }}</td>
+            <td>{{ curSalePer.email }}</td>
+            <td>{{ curSalePer.salesVolume | currency:'USD'}}</td>
+            <td>
+                <div *ngIf="curSalePer.salesVolume >= 5000; else elBlock">Yes</div>
+                <ng-template #elBlock>No</ng-template>
+            </td>
+        </tr>
+    </tbody>
+</table>

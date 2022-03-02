@@ -18,6 +18,14 @@
           </div>
 
         </div>
+
+        <!-- if products are empty display a message
+          ? is a safe navigation operator, guards against null and undefined values in property
+          will apply the message if products is null as well -->
+        <div *ngIf="products?.length == 0" class="alert alert-warning col-md-12" role="alert">
+          No products found.
+        </div>
+
       </div>
     </div>
   </div>

@@ -1,3 +1,4 @@
+import { temporaryAllocator } from '@angular/compiler/src/render3/view/util';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { CartItem } from '../common/cart-item';
@@ -74,5 +75,31 @@ export class CartService {
 
     console.log(`totalPrice: ${totalPriceValue.toFixed(2)}, totalQuantity: ${totalQuantityValue}`);
     console.log('==========');
+  }
+
+  decrementQuantity(theCartItem: CartItem) {
+
+    theCartItem.quantity--;
+
+    if (theCartItem.quantity == 0) {
+
+      this.remove(theCartItem);
+    }
+    else {
+      this.computeCartTotals();
+    }
+  }
+  remove(theCartItem: CartItem) {
+
+    // get index of item in the array
+    const itemIndex = this.cartItems.findIndex(tempCartItem => tempCartItem.id === theCartItem.id);
+
+    // if found, remove the item from the array at the given index
+    if (itemIndex > - 1) {
+
+      this.cartItems.splice(itemIndex, 1);
+
+      this.computeCartTotals;
+    }
   }
 }

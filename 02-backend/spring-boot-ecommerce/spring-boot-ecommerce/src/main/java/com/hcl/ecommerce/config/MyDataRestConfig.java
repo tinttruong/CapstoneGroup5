@@ -16,6 +16,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
 import com.hcl.ecommerce.entity.Country;
+import com.hcl.ecommerce.entity.Order;
 import com.hcl.ecommerce.entity.Product;
 import com.hcl.ecommerce.entity.ProductCategory;
 import com.hcl.ecommerce.entity.State;
@@ -49,6 +50,8 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
 		// use above functionality to make State and Country READ ONLY
 		disableHttpMethods(Country.class, config, theUnsupportedActions);
 		disableHttpMethods(State.class, config, theUnsupportedActions);
+		
+		disableHttpMethods(Order.class, config, theUnsupportedActions);
 		
 		
 		// call an internal helper method

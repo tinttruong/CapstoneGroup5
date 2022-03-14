@@ -11,7 +11,7 @@ import com.hcl.ecommerce.dto.Purchase;
 import com.hcl.ecommerce.dto.PurchaseResponse;
 import com.hcl.ecommerce.service.CheckoutService;
 
-@CrossOrigin("http://localhost:4200")
+//@CrossOrigin("http://localhost:4200") - deprecated
 @RestController
 @RequestMapping("/api/checkout")
 public class CheckoutController {

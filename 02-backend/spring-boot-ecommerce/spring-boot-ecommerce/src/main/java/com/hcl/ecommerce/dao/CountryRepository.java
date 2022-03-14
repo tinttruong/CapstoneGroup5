@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.hcl.ecommerce.entity.Country;
 
-@CrossOrigin("http://localhost:4200")
+//@CrossOrigin("http://localhost:4200") - Removed b/c in SpringDataRest config
 @RepositoryRestResource(collectionResourceRel = "countries", path = "countries")
 public interface CountryRepository extends JpaRepository<Country, Integer>{
 	

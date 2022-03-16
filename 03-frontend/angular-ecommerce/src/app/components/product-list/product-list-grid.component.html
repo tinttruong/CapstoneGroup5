@@ -11,11 +11,11 @@
         <div *ngFor="let tempProd of products" class="col-md-3">
 
           <div class="product-box">
-
+            <div> <!-- Added in Group5ProductUpdate -->
             <a routerLink="/products/{{ tempProd.id }}">
               <img src="{{ tempProd.imageUrl }}" class="img-responsive">
             </a>
-
+            </div> <!-- Added in Group5ProductUpdate -->
             <a routerLink="/products/{{ tempProd.id }}">
               <h1>{{ tempProd.name }}</h1>
             </a>

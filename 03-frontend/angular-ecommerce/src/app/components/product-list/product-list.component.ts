@@ -87,7 +87,7 @@ export class ProductListComponent implements OnInit {
     else {
       // no category id available ... default to category id of 1
       this.currentCategoryId = 1;
-      this.currentCategoryName = 'Books';
+      this.currentCategoryName = 'Keyboards'; // --- Added in Group5ProductUpdate ---
     }
 
     //

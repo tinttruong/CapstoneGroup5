@@ -91,7 +91,7 @@ VALUES ('KBD-TECH-0010', 'Budget RGB Gaming Keyboard', 'For Gamers who are under
 -- -----------------------------------------------------
 
 INSERT INTO product (sku, name, description, image_url, active, units_in_stock, unit_price, category_id, date_created) 
-VALUES ('MOS-TECH-0001', 'Wired Black Mouse', 'Wired black mouse with right and left clicks and scroll wheel', 'assets/images/products/mice/mouse001.jpg', 1, 100, 9.99, 2, NOW());
+VALUES ('MOS-TECH-0001', 'Budget Wired Mouse', 'Wired black mouse with right and left clicks and scroll wheel', 'assets/images/products/mice/mouse001.jpg', 1, 100, 9.99, 2, NOW());
 
 INSERT INTO product (sku, name, description, image_url, active, units_in_stock, unit_price, category_id, date_created) 
 VALUES ('MOS-TECH-0002', 'Wireless Black Mouse', 'Wireless black mouse with right and left clicks and scroll wheel', 'assets/images/products/mice/mouse002.jpg', 1, 100, 14.99, 2, NOW());
@@ -100,16 +100,16 @@ INSERT INTO product (sku, name, description, image_url, active, units_in_stock, 
 VALUES ('MOS-TECH-0003', 'Wired Black Grey Mouse', 'Wired black and grey mouse with right and left clicks and scroll wheel', 'assets/images/products/mice/mouse003.jpg', 1, 100, 9.99, 2, NOW());
 
 INSERT INTO product (sku, name, description, image_url, active, units_in_stock, unit_price, category_id, date_created) 
-VALUES ('MOS-TECH-0004', 'Antique Mouse', 'High quality antique styled mouse. Made with real mahagony', 'assets/images/products/mice/mouse004.jpg', 1, 100, 59.99, 2, NOW());
+VALUES ('MOS-TECH-0004', 'Exotic Antique Mouse', 'High quality antique styled mouse. Made with real mahagony', 'assets/images/products/mice/mouse004.jpg', 1, 100, 59.99, 2, NOW());
 
 INSERT INTO product (sku, name, description, image_url, active, units_in_stock, unit_price, category_id, date_created) 
 VALUES ('MOS-TECH-0005', 'Black and Gold Mouse', 'Black and gold wireless mouse with scroll sphere', 'assets/images/products/mice/mouse005.jpg', 1, 100, 19.99, 2, NOW());
 
 INSERT INTO product (sku, name, description, image_url, active, units_in_stock, unit_price, category_id,date_created) 
-VALUES ('MOS-TECH-0006', 'Polygon Mouse', 'Uniquely crafted polygon mouse with USB receiver plug in', 'assets/images/products/mice/mouse006.jpg', 1, 100, 27.99, 2, NOW());
+VALUES ('MOS-TECH-0006', 'Red Wired Mouse', 'Uniquely crafted polygon mouse with USB receiver plug in', 'assets/images/products/mice/mouse006.jpg', 1, 100, 27.99, 2, NOW());
 
 INSERT INTO product (sku, name, description, image_url, active, units_in_stock, unit_price, category_id, date_created) 
-VALUES ('MOS-TECH-0007', 'Wired Red Mouse', 'Wired red mouse with left and right clicks and scroll wheel', 'assets/images/products/mice/mouse007.jpg', 1, 100, 14.99, 2, NOW());
+VALUES ('MOS-TECH-0007', 'Exotic Polygon Mouse', 'Wired red mouse with left and right clicks and scroll wheel', 'assets/images/products/mice/mouse007.jpg', 1, 100, 14.99, 2, NOW());
 
 INSERT INTO product (sku, name, description, image_url, active, units_in_stock, unit_price, category_id, date_created) 
 VALUES ('MOS-TECH-0008', 'Gold Mouse', 'Wireless gold and white mouse with right and left clicks and scroll wheel', 'assets/images/products/mice/mouse008.jpg', 1, 100, 19.99, 2, NOW());

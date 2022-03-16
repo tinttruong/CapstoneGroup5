@@ -5,10 +5,10 @@
     <hr>
 
     <div class="container-fluid">
-      <div class="row">
+      <div class="row align-items-end">
 
         <!-- loop over the collection of products-->
-        <div *ngFor="let tempProd of products" class="col-md-3">
+        <div *ngFor="let tempProd of products" class="col-md-3" >
 
           <div class="product-box">
             <div> <!-- Added in Group5ProductUpdate -->
@@ -20,8 +20,8 @@
               <h1>{{ tempProd.name }}</h1>
             </a>
 
-            <div class="price">{{ tempProd.unitPrice | currency:'USD' }}</div>
-            <button (click)="addToCart(tempProd)" class="btn btn-primary btn-sm">Add to cart</button>
+            <div class="price" style="color:black;">{{ tempProd.unitPrice | currency:'USD' }}</div>
+            <button (click)="addToCart(tempProd)" class="btn btn-dark btn-sm">Add to cart</button>
           </div>
 
         </div>

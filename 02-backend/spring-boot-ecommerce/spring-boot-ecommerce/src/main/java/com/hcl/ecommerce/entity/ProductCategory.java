@@ -29,6 +29,9 @@ public class ProductCategory {
 	@Column(name = "category_name")
 	private String categoryName;
 	
+	@Column(name = "thumbnail_url")
+	private String thumbnailUrl;
+	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
 	private Set<Product> products;
 	

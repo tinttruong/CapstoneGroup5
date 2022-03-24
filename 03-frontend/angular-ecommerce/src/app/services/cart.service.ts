@@ -107,6 +107,7 @@ export class CartService {
     if (theCartItem.quantity == 0) {
 
       this.remove(theCartItem);
+      this.computeCartTotals();
     }
     else {
       this.computeCartTotals();
@@ -122,7 +123,7 @@ export class CartService {
 
       this.cartItems.splice(itemIndex, 1);
 
-      this.computeCartTotals;
+      this.computeCartTotals();
     }
   }
 }

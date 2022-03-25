@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
   compaccesApiUrl: "https://ecommerce-backend.azurewebsites.net/api",
-  stripePublishluv2shopApiUrlableKey: "pk_test_51KgZckE6okuwhGCfjABpYUUcNI0kbbK36WsnseXatx6xdoSKMsF7hO6mSLHDvNocKnQYdeMI9bwbBCXJpiIKMbM3002aJHIZkX"
+  stripePublishableKey: "pk_test_51KgY2nD8yEo5gUnzHaTsWXAxySFRQCcmuo2kkAtfITaOUGaJOjckV7oTjxnKOXDpcOELkguYDgm87UVHZjiehHsb00pUTH44Jz"
 };

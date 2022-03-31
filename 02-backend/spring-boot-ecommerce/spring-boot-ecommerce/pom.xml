@@ -15,8 +15,6 @@
 	<name>spring-boot-ecommerce</name>
 	<description>Spring Boot Ecommerce Project</description>
 	<properties>
-		<sonar.organization>capstoneproject</sonar.organization>
- 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 		<java.version>1.8</java.version>
 	</properties>
 

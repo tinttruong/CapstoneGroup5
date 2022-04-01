@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import io.swagger.annotations.ApiModel;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,6 +20,7 @@ import lombok.Setter;
 // @Data - known bug with 1 to many
 @Getter
 @Setter
+@ApiModel(description = "Properties of the Product Category")
 public class ProductCategory {
 	
 	@Id

@@ -12,6 +12,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import io.swagger.annotations.ApiModel;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,6 +20,7 @@ import lombok.Setter;
 @Table(name="country")
 @Getter
 @Setter
+@ApiModel(description = "Properties of a billing Country")
 public class Country {
 	
 	@Id

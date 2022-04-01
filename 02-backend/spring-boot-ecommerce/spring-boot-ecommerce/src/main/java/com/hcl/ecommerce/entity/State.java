@@ -9,11 +9,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import io.swagger.annotations.ApiModel;
 import lombok.Data;
 
 @Entity
 @Table(name="state")
 @Data
+@ApiModel(description = "Properties of a billing State")
 public class State {
 	
 	@Id

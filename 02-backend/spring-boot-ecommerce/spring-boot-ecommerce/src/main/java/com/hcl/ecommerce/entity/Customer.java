@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import io.swagger.annotations.ApiModel;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,6 +20,7 @@ import lombok.Setter;
 @Table(name="customer")
 @Getter
 @Setter
+@ApiModel(description = "Properties of an order's Customer")
 public class Customer {
 	
 	@Id

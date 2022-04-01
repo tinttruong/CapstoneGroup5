@@ -20,6 +20,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import io.swagger.annotations.ApiModel;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,6 +28,7 @@ import lombok.Setter;
 @Table(name="orders")
 @Getter
 @Setter
+@ApiModel(description = "Properties of an Order")
 public class Order {
 	
 	@Id

@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import com.hcl.ecommerce.config.SecurityConfiguration;
 import com.hcl.ecommerce.dao.CustomerRepository;
 import com.hcl.ecommerce.dto.PaymentInfo;
 import com.hcl.ecommerce.dto.Purchase;

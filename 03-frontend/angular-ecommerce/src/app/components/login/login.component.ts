@@ -13,8 +13,7 @@ export class LoginComponent implements OnInit {
 
   oktaSignin: any;
 
-  constructor(private oktaAuthService: OktaAuthStateService,
-    @Inject(OKTA_AUTH) private oktaAuth: OktaAuth) {
+  constructor(@Inject(OKTA_AUTH) private oktaAuth: OktaAuth) {
 
     this.oktaSignin = new OktaSignIn({
       logo: 'assets/images/group5logo.jpg',

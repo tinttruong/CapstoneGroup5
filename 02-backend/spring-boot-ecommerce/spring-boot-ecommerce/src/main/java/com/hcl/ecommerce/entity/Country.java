@@ -12,18 +12,13 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import io.swagger.annotations.ApiModel;
-import lombok.*;
-
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name="country")
 @Getter
 @Setter
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-@ApiModel(description = "Properties of a billing Country")
 public class Country {
 	
 	@Id

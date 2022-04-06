@@ -11,7 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import io.swagger.annotations.ApiModel;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,7 +18,6 @@ import lombok.Setter;
 @Table(name="order_item")
 @Getter
 @Setter
-@ApiModel(description = "Properties of the Item in an Order")
 public class OrderItem {
 	
 	@Id

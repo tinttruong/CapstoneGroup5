@@ -241,6 +241,84 @@ describe('Luv2ShopFormService', () => {
       }
     })
   });
+
+  /*
+  * HAPPY PATH
+  * Months returned should be 1 - 12 inclusive
+  */
+  it('should return numerical list representing months <= 12', (done: DoneFn) => {
+
+    const startMonth = 1;
+
+    let expectedMonths: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+
+    formService.getCreditCardMonths(startMonth).subscribe({
+
+      next: (months) => {
+        expect(months)
+          .withContext('Expected Months')
+          .toEqual(expectedMonths);
+        done();
+      },
+      error: done.fail
+    })
+  });
+
+  /*
+  * HAPPY PATH
+  * Months returned should be 3 - 12 inclusive
+  * Since the start month is 3 only months >= 3
+  * should be shown
+  */
+  it('should return numerical list representing months <= 12', (done: DoneFn) => {
+
+    const startMonth = 3;
+
+    let expectedMonths: number[] = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+
+    formService.getCreditCardMonths(startMonth).subscribe({
+
+      next: (months) => {
+        expect(months)
+          .withContext('Expected Months')
+          .toEqual(expectedMonths);
+        done();
+      },
+      error: done.fail
+    })
+  });
+
+  /*
+  * HAPPY PATH
+  * Retrieve credit card years, should contain
+  * 10 values in list starting with current year
+  * increasing up to current year + 10
+  */
+  it('should return numerical list of years: curYear + 10', (done: DoneFn) => {
+
+    const curYear: number = new Date().getFullYear();
+    const expectedYearList: number[] = [];
+
+    for (let i = curYear; i <= curYear + 10; i++) {
+      expectedYearList.push(i);
+    }
+
+    formService.getCreditCardYears().subscribe({
+
+      next: (years) => {
+        expect(years)
+          .withContext('Next 10 years')
+          .toEqual(expectedYearList);
+        done();
+      },
+      error: done.fail
+    })
+
+  });
+
+  /*
+  * END OF UNIT TESTS
+  */
 });
 
 /** Create async observable that emits-once and completes

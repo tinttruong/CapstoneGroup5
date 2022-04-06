@@ -9,7 +9,6 @@ import java.util.UUID;
 
 import javax.transaction.Transactional;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -29,7 +28,6 @@ import com.stripe.model.PaymentIntent;
 public class CheckoutServiceImpl implements CheckoutService {
 	
 	private CustomerRepository customerRepository;
-	static Logger log = Logger.getLogger(CheckoutServiceImpl.class);
 	
 	@Autowired
 	public CheckoutServiceImpl(CustomerRepository customerRepository, 
@@ -44,26 +42,20 @@ public class CheckoutServiceImpl implements CheckoutService {
 	@Transactional
 	public PurchaseResponse placeOrder(Purchase purchase) {
 		
-		
 		// retrieve the order info from dto
 		Order order = purchase.getOrder();
-		log.info("Got order of purchase");
+		
 		// generate tracking number
 		String orderTrackingNumber = generateOrderTrackingNumber();
 		order.setOrderTrackingNumber(orderTrackingNumber);
-
-		log.debug("Got order tracking number. Order Tracking number: " + order);
-		// populate order with orderItems
 		
+		// populate order with orderItems
 		Set<OrderItem> orderItems = purchase.getOrderItems();
 		orderItems.forEach(item -> order.add(item));
 		
 		// populate order with billingAddress and shippingAddress
 		order.setBillingAddress(purchase.getBillingAddress());
 		order.setShippingAddress(purchase.getShippingAddress());
-
-		log.debug("Got order Billing Address: " + purchase.getBillingAddress());
-		log.debug("Got order Shipping Address: " + purchase.getShippingAddress());
 		
 		// populate customer with order
 		Customer customer = purchase.getCustomer();
@@ -92,18 +84,14 @@ public class CheckoutServiceImpl implements CheckoutService {
 		
 		List<String> paymentMethodTypes = new ArrayList<>();
 		paymentMethodTypes.add("card");
-
-		log.info("Creating payment intent");
-		Map<String, Object> params = new HashMap<>();
 		
+		Map<String, Object> params = new HashMap<>();
 		
 		params.put("amount", paymentInfo.getAmount());
 		params.put("currency", paymentInfo.getCurrency());
 		params.put("payment_method_types", paymentMethodTypes);
 		params.put("description", "Computer Accessories purchase");
 		params.put("receipt_email", paymentInfo.getReceiptEmail());
-		
-		log.debug("Payment Params: " + params);
 		
 		return PaymentIntent.create(params);
 	}
@@ -113,8 +101,7 @@ public class CheckoutServiceImpl implements CheckoutService {
 		// generate a random UUID number (UUID version-4)
 		// For details see: Universally unique identifier in wiki
 		
-
-		log.info("Creating random OrderID");
+		
 		return UUID.randomUUID().toString();
 	}
 

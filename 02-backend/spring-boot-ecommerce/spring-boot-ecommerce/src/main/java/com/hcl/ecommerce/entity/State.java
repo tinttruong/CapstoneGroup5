@@ -9,19 +9,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import io.swagger.annotations.ApiModel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name="state")
 @Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-@ApiModel(description = "Properties of a billing State")
 public class State {
 	
 	@Id

@@ -9,6 +9,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+import io.swagger.annotations.ApiModel;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,6 +17,7 @@ import lombok.Setter;
 @Table(name="address")
 @Getter
 @Setter
+@ApiModel(description = "Properties of a billing Address")
 public class Address {
 	
 	@Id

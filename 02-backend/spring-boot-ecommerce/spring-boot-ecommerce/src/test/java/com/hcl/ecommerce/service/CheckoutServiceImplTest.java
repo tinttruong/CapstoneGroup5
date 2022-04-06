@@ -260,23 +260,22 @@ class CheckoutServiceImplTest {
         assertSame(customer, order5.getCustomer());
     }
 
-    @Test
-    @Disabled
-    void testCreatePaymentIntentUnHappy() throws StripeException {
-        // TODO: This test is incomplete.
-        //   Reason: R011 Sandboxing policy violation.
-        //   Diffblue Cover ran code in your project that tried
-        //     to access the network.
-        //   Diffblue Cover's default sandboxing policy disallows this in order to prevent
-        //   your code from damaging your system environment.
-        //   See https://diff.blue/R011 to resolve this issue.
-
-        PaymentInfo paymentInfo = new PaymentInfo();
-        paymentInfo.setAmount(10);
-        paymentInfo.setCurrency("GBP");
-        paymentInfo.setReceiptEmail("jane.doe@example.org");
-        this.checkoutServiceImpl.createPaymentIntent(paymentInfo);
-    }
+//    @Test
+//    @Disabled
+//    void testCreatePaymentIntentUnHappy() throws StripeException {
+//        //   Reason: R011 Sandboxing policy violation.
+//        //   Diffblue Cover ran code in your project that tried
+//        //     to access the network.
+//        //   Diffblue Cover's default sandboxing policy disallows this in order to prevent
+//        //   your code from damaging your system environment.
+//        //   See https://diff.blue/R011 to resolve this issue.
+//
+//        PaymentInfo paymentInfo = new PaymentInfo();
+//        paymentInfo.setAmount(10);
+//        paymentInfo.setCurrency("GBP");
+//        paymentInfo.setReceiptEmail("jane.doe@example.org");
+//        this.checkoutServiceImpl.createPaymentIntent(paymentInfo);
+//    }
 
     @Test
     void testCreatePaymentIntentHappy() throws StripeException {

@@ -56,16 +56,23 @@ describe('CartService', () => {
   });
 
   /*
-  * Check that the cartitem quantity will increase
+  * Check that the cartitem length will remain the same
   * if an identical item is added to the cart
   */
   it('should increase cart size if duplicate items are added', () => {
+
+    mockCartItem.quantity = 1;
 
     cartService.addToCart(mockCartItem);
 
     let length1 = cartService.cartItems.length;
     let expectedLen = 1;
     expect(expectedLen).toEqual(length1);
+
+    cartService.addToCart(mockCartItem);
+
+    let length2 = cartService.cartItems.length;
+    expect(expectedLen).toEqual(length2);
   });
 
   /*
@@ -88,4 +95,37 @@ describe('CartService', () => {
     expect(expectedQuantity).toEqual(actualQuantity);
   });
 
+  /*
+  * Check that the cartitem quantity will decrease
+  * if an identical item is decreased calling
+  * decrementQuantity()
+  */
+  it('should decrement totalQuantity if item is removed', () => {
+
+    mockCartItem.id = 1;
+    mockCartItem.quantity = 1;
+    cartService.addToCart(mockCartItem);
+    cartService.addToCart(mockCartItem);
+
+    let actualQuantity: number = 0;
+    let expectedQuantity: number = 2;
+
+    cartService.totalQuantity.subscribe(
+
+      data => actualQuantity = data
+    );
+
+    expect(expectedQuantity).toEqual(actualQuantity);
+
+    // remove an item check if equal to 1
+    expectedQuantity = 1;
+    cartService.decrementQuantity(mockCartItem);
+
+    cartService.totalQuantity.subscribe(
+
+      data => actualQuantity = data
+    );
+
+    expect(expectedQuantity).toEqual(actualQuantity);
+  });
 });

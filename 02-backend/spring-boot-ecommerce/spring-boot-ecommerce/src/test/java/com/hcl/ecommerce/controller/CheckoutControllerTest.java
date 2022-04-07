@@ -8,6 +8,7 @@ import static org.mockito.Mockito.when;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hcl.ecommerce.dao.CustomerRepository;
+import com.hcl.ecommerce.dao.ProductRepository;
 import com.hcl.ecommerce.dto.PaymentInfo;
 import com.hcl.ecommerce.dto.Purchase;
 import com.hcl.ecommerce.entity.Address;

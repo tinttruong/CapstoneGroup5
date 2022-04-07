@@ -16,8 +16,8 @@
 	<description>Spring Boot Ecommerce Project</description>
 	<properties>
 		<java.version>1.8</java.version>
-		<junit-jupiter.version>5.8.1</junit-jupiter.version>
-		<junit.platform.version>1.8.1</junit.platform.version>
+  		<sonar.organization>capstoneproject</sonar.organization>
+  		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 	</properties>
 
 	<dependencies>
@@ -57,12 +57,20 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
+    
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
+			<exclusions>
+				<exclusion>
+					<groupId>org.junit.vintage</groupId>
+					<artifactId>junit-vintage-engine</artifactId>
+				</exclusion>
+			</exclusions>
+    </dependency>
+    
+    <dependency>
 		    <groupId>io.springfox</groupId>
 		    <artifactId>springfox-boot-starter</artifactId>
 		    <version>3.0.0</version>
@@ -74,24 +82,7 @@
 		    <version>1.5.0.RC1</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-engine</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-params</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.junit.platform</groupId>
-			<artifactId>junit-platform-suite</artifactId>
-		</dependency>
-
+		
 		<!-- https://mvnrepository.com/artifact/org.mockito/mockito-inline -->
 		<dependency>
 			<groupId>org.mockito</groupId>
@@ -103,9 +94,9 @@
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
-			<scope>runtime</scope>
+			<scope>test</scope>
 		</dependency>
-
+		
 	</dependencies>
 
 	<build>
@@ -121,6 +112,30 @@
 						</exclude>
 					</excludes>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.7</version>
+				<executions>
+					<execution>
+						<id>prepare-agent</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<goals>
+							<goal>report</goal>
+						</goals>
+						<configuration>
+							<formats>
+								<format>XML</format>
+							</formats>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

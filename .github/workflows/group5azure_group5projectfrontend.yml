@@ -6,7 +6,7 @@ name: Build and deploy Node.js app to Azure Web App - Group5ProjectFrontend
 on:
   push:
     branches:
-      - Group5Azure
+      - main
     paths:
       - '03-frontend/angular-ecommerce/**'
   workflow_dispatch:

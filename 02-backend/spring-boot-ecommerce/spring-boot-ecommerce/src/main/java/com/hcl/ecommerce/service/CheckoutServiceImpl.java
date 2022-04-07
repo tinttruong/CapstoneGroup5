@@ -24,6 +24,7 @@ import com.hcl.ecommerce.entity.OrderItem;
 import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
 import com.stripe.model.PaymentIntent;
+import com.hcl.ecommerce.dao.ProductRepository;
 
 @Service
 public class CheckoutServiceImpl implements CheckoutService {
@@ -32,9 +33,10 @@ public class CheckoutServiceImpl implements CheckoutService {
 	static Logger log = Logger.getLogger(CheckoutServiceImpl.class);
 	
 	@Autowired
-	public CheckoutServiceImpl(CustomerRepository customerRepository, 
+	public CheckoutServiceImpl(CustomerRepository customerRepository, ProductRepository productRepository, 
 							   @Value("${stripe.key.secret}") String secretKey) {
 		this.customerRepository = customerRepository;
+		this.productRepository = productRepository;
 		
 		// initialize stripe API with secret key
 		Stripe.apiKey = secretKey;
@@ -57,6 +59,16 @@ public class CheckoutServiceImpl implements CheckoutService {
 		
 		Set<OrderItem> orderItems = purchase.getOrderItems();
 		orderItems.forEach(item -> order.add(item));
+		
+		for(OrderItem orders:orderItems) {
+            	//log.debug("Got order item of id: " +orders.getProductId() + " it has an quantity of " + orders.getQuantity());
+            	    Optional<Product> orderFromDB = productRepository.findById(orders.getProductId());
+            	    int decrementAmount = orderFromDB.get().getUnitsInStock() - orders.getQuantity();
+           	    orderFromDB.get().setUnitsInStock(decrementAmount);
+           	    productRepository.save(orderFromDB.get());
+            	    Optional<Product> orderFromDB2 = productRepository.findById(orders.getProductId());
+            	    log.debug(orderFromDB2.get().getUnitsInStock());
+        	}
 		
 		// populate order with billingAddress and shippingAddress
 		order.setBillingAddress(purchase.getBillingAddress());

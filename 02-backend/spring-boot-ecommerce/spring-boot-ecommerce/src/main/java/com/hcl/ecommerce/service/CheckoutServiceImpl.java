@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 
@@ -16,14 +15,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.hcl.ecommerce.dao.CustomerRepository;
-import com.hcl.ecommerce.dao.ProductRepository;
 import com.hcl.ecommerce.dto.PaymentInfo;
 import com.hcl.ecommerce.dto.Purchase;
 import com.hcl.ecommerce.dto.PurchaseResponse;
 import com.hcl.ecommerce.entity.Customer;
 import com.hcl.ecommerce.entity.Order;
 import com.hcl.ecommerce.entity.OrderItem;
-import com.hcl.ecommerce.entity.Product;
 import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
 import com.stripe.model.PaymentIntent;
@@ -31,15 +28,14 @@ import com.stripe.model.PaymentIntent;
 @Service
 public class CheckoutServiceImpl implements CheckoutService {
 	
-	private ProductRepository productRepository;
 	private CustomerRepository customerRepository;
 	static Logger log = Logger.getLogger(CheckoutServiceImpl.class);
 	
 	@Autowired
-	public CheckoutServiceImpl(CustomerRepository customerRepository, ProductRepository productRepository,
+	public CheckoutServiceImpl(CustomerRepository customerRepository, 
 							   @Value("${stripe.key.secret}") String secretKey) {
 		this.customerRepository = customerRepository;
-		this.productRepository = productRepository;
+		
 		// initialize stripe API with secret key
 		Stripe.apiKey = secretKey;
 	}
@@ -61,16 +57,6 @@ public class CheckoutServiceImpl implements CheckoutService {
 		
 		Set<OrderItem> orderItems = purchase.getOrderItems();
 		orderItems.forEach(item -> order.add(item));
-		for(OrderItem orders:orderItems) {
-			//log.debug("Got order item of id: " +orders.getProductId() + " it has an quantity of " + orders.getQuantity());
-			Optional<Product> orderFromDB = productRepository.findById(orders.getProductId());
-			int decrementAmount = orderFromDB.get().getUnitsInStock() - orders.getQuantity();
-			orderFromDB.get().setUnitsInStock(decrementAmount);
-			productRepository.save(orderFromDB.get());
-			Optional<Product> orderFromDB2 = productRepository.findById(orders.getProductId());
-			log.debug(orderFromDB2.get().getUnitsInStock());
-		}
-		
 		
 		// populate order with billingAddress and shippingAddress
 		order.setBillingAddress(purchase.getBillingAddress());
@@ -91,8 +77,6 @@ public class CheckoutServiceImpl implements CheckoutService {
 			// if we find the customer assign to customer variable
 			customer = customerFromDB;
 		}
-		
-		
 		
 		customer.add(order);
 		

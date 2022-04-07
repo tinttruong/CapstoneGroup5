@@ -81,7 +81,12 @@
 		    <artifactId>mapstruct</artifactId>
 		    <version>1.5.0.RC1</version>
 		</dependency>
-
+		<!-- https://mvnrepository.com/artifact/org.mapstruct/mapstruct-processor -->
+		<dependency>
+		    <groupId>org.mapstruct</groupId>
+		    <artifactId>mapstruct-processor</artifactId>
+		    <version>1.5.0.RC1</version>
+		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/org.mockito/mockito-inline -->
 		<dependency>

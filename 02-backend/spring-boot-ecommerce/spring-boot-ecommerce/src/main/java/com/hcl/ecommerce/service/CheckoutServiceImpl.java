@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 import com.hcl.ecommerce.dao.CustomerRepository;
 import com.hcl.ecommerce.dao.ProductRepository;
 import com.hcl.ecommerce.dto.PaymentInfo;
-import com.hcl.ecommerce.dto.Purchase;
+import com.hcl.ecommerce.dto.PurchaseDto;
 import com.hcl.ecommerce.dto.PurchaseResponse;
 import com.hcl.ecommerce.entity.Customer;
 import com.hcl.ecommerce.entity.Order;
@@ -46,7 +46,7 @@ public class CheckoutServiceImpl implements CheckoutService {
 
 	@Override
 	@Transactional
-	public PurchaseResponse placeOrder(Purchase purchase) {
+	public PurchaseResponse placeOrder(PurchaseDto purchase) {
 
 		// retrieve the order info from dto
 		Order order = purchase.getOrder();
@@ -61,18 +61,18 @@ public class CheckoutServiceImpl implements CheckoutService {
 		Set<OrderItem> orderItems = purchase.getOrderItems();
 		orderItems.forEach(item -> order.add(item));
 		for (OrderItem orders : orderItems) {
-			// log.debug("Got order item of id: " +orders.getProductId() + " it has an
-			// quantity of " + orders.getQuantity());
-			Optional<Product> orderFromDB = productRepository.findById(orders.getProductId());
-			if(orderFromDB.isPresent()){
-				int decrementAmount = orderFromDB.get().getUnitsInStock() - orders.getQuantity();
-				orderFromDB.get().setUnitsInStock(decrementAmount);
-				productRepository.save(orderFromDB.get());
-			}
-			Optional<Product> orderFromDB2 = productRepository.findById(orders.getProductId());
-			if(orderFromDB2.isPresent()){
-				log.debug(orderFromDB2.get().getUnitsInStock());
-			}
+          // log.debug("Got order item of id: " +orders.getProductId() + " it has an
+          // quantity of " + orders.getQuantity());
+          Optional<Product> orderFromDB = productRepository.findById(orders.getProductId());
+          if(orderFromDB.isPresent()){
+              int decrementAmount = orderFromDB.get().getUnitsInStock() - orders.getQuantity();
+              orderFromDB.get().setUnitsInStock(decrementAmount);
+              productRepository.save(orderFromDB.get());
+          }
+          Optional<Product> orderFromDB2 = productRepository.findById(orders.getProductId());
+          if(orderFromDB2.isPresent()){
+              log.debug(orderFromDB2.get().getUnitsInStock());
+          }
 		}
 
 		// populate order with billingAddress and shippingAddress

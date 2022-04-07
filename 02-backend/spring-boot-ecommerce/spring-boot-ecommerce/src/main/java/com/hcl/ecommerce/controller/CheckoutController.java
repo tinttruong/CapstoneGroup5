@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hcl.ecommerce.dto.PaymentInfo;
-import com.hcl.ecommerce.dto.Purchase;
+import com.hcl.ecommerce.dto.PurchaseDto;
 import com.hcl.ecommerce.dto.PurchaseResponse;
 import com.hcl.ecommerce.service.CheckoutService;
 import com.stripe.exception.StripeException;
@@ -33,7 +33,7 @@ public class CheckoutController {
 	}
 	
 	@PostMapping("/purchase")
-	public PurchaseResponse placeOrder(@RequestBody Purchase purchase) {
+	public PurchaseResponse placeOrder(@RequestBody PurchaseDto purchase) {
 		
 		log.info("Purchase: " + purchase);
 		

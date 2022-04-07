@@ -12,7 +12,7 @@ import static org.mockito.Mockito.when;
 
 import com.hcl.ecommerce.dao.CustomerRepository;
 import com.hcl.ecommerce.dto.PaymentInfo;
-import com.hcl.ecommerce.dto.Purchase;
+import com.hcl.ecommerce.dto.PurchaseDto;
 import com.hcl.ecommerce.entity.Address;
 import com.hcl.ecommerce.entity.Customer;
 import com.hcl.ecommerce.entity.Order;
@@ -243,7 +243,7 @@ class CheckoutServiceImplTest {
         address7.setStreet("Street");
         address7.setZipCode("21654");
 
-        Purchase purchase = new Purchase();
+        PurchaseDto purchase = new PurchaseDto();
         purchase.setBillingAddress(address2);
         purchase.setCustomer(customer3);
         purchase.setOrder(order3);

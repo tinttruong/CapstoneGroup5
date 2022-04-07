@@ -64,11 +64,15 @@ public class CheckoutServiceImpl implements CheckoutService {
 			// log.debug("Got order item of id: " +orders.getProductId() + " it has an
 			// quantity of " + orders.getQuantity());
 			Optional<Product> orderFromDB = productRepository.findById(orders.getProductId());
-			int decrementAmount = orderFromDB.isPresent().get().getUnitsInStock() - orders.getQuantity();
-			orderFromDB.get().setUnitsInStock(decrementAmount);
-			productRepository.save(orderFromDB.get());
+			if(orderFromDB.isPresent()){
+				int decrementAmount = orderFromDB.get().getUnitsInStock() - orders.getQuantity();
+				orderFromDB.get().setUnitsInStock(decrementAmount);
+				productRepository.save(orderFromDB.get());
+			}
 			Optional<Product> orderFromDB2 = productRepository.findById(orders.getProductId());
-			log.debug(orderFromDB2.isPresent().get().getUnitsInStock());
+			if(orderFromDB2.isPresent()){
+				log.debug(orderFromDB2.get().getUnitsInStock());
+			}
 		}
 
 		// populate order with billingAddress and shippingAddress

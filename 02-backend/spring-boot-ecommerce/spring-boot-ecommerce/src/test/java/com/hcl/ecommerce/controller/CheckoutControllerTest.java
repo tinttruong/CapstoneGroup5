@@ -72,10 +72,11 @@ class CheckoutControllerTest {
         customer1.setLastName("Doe");
         customer1.setOrders(new HashSet<>());
         CustomerRepository customerRepository = mock(CustomerRepository.class);
+        ProductRepository productRepository = mock(ProductRepository.class);
         when(customerRepository.findByEmail((String) any())).thenReturn(customer);
         when(customerRepository.save((Customer) any())).thenReturn(customer1);
         CheckoutController checkoutController = new CheckoutController(
-                new CheckoutServiceImpl(customerRepository, "EXAMPLEKEYwjalrXUtnFEMI/K7MDENG/bPxRfiCY"));
+                new CheckoutServiceImpl(customerRepository, productRepository, "EXAMPLEKEYwjalrXUtnFEMI/K7MDENG/bPxRfiCY"));
 
         Address address = new Address();
         address.setCity("Oxford");
@@ -503,10 +504,11 @@ class CheckoutControllerTest {
         customer1.setLastName("Doe");
         customer1.setOrders(new HashSet<>());
         CustomerRepository customerRepository = mock(CustomerRepository.class);
+        ProductRepository productRepository = mock(ProductRepository.class);
         when(customerRepository.findByEmail((String) any())).thenReturn(customer);
         when(customerRepository.save((Customer) any())).thenReturn(customer1);
         CheckoutController checkoutController = new CheckoutController(
-                new CheckoutServiceImpl(customerRepository, "EXAMPLEKEYwjalrXUtnFEMI/K7MDENG/bPxRfiCY"));
+                new CheckoutServiceImpl(customerRepository, productRepository, "EXAMPLEKEYwjalrXUtnFEMI/K7MDENG/bPxRfiCY"));
 
         Address address = new Address();
         address.setCity("Oxford");

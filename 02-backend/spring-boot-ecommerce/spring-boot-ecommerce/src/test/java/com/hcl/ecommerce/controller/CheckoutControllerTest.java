@@ -8,6 +8,7 @@ import static org.mockito.Mockito.when;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hcl.ecommerce.dao.CustomerRepository;
+import com.hcl.ecommerce.dao.ProductRepository;
 import com.hcl.ecommerce.dto.PaymentInfo;
 import com.hcl.ecommerce.dto.Purchase;
 import com.hcl.ecommerce.entity.Address;
@@ -72,10 +73,11 @@ class CheckoutControllerTest {
         customer1.setLastName("Doe");
         customer1.setOrders(new HashSet<>());
         CustomerRepository customerRepository = mock(CustomerRepository.class);
+        ProductRepository productRepository = mock(ProductRepository.class);
         when(customerRepository.findByEmail((String) any())).thenReturn(customer);
         when(customerRepository.save((Customer) any())).thenReturn(customer1);
         CheckoutController checkoutController = new CheckoutController(
-                new CheckoutServiceImpl(customerRepository, "EXAMPLEKEYwjalrXUtnFEMI/K7MDENG/bPxRfiCY"));
+                new CheckoutServiceImpl(customerRepository, productRepository, "EXAMPLEKEYwjalrXUtnFEMI/K7MDENG/bPxRfiCY"));
 
         Address address = new Address();
         address.setCity("Oxford");
@@ -503,10 +505,11 @@ class CheckoutControllerTest {
         customer1.setLastName("Doe");
         customer1.setOrders(new HashSet<>());
         CustomerRepository customerRepository = mock(CustomerRepository.class);
+        ProductRepository productRepository = mock(ProductRepository.class);
         when(customerRepository.findByEmail((String) any())).thenReturn(customer);
         when(customerRepository.save((Customer) any())).thenReturn(customer1);
         CheckoutController checkoutController = new CheckoutController(
-                new CheckoutServiceImpl(customerRepository, "EXAMPLEKEYwjalrXUtnFEMI/K7MDENG/bPxRfiCY"));
+                new CheckoutServiceImpl(customerRepository, productRepository, "EXAMPLEKEYwjalrXUtnFEMI/K7MDENG/bPxRfiCY"));
 
         Address address = new Address();
         address.setCity("Oxford");

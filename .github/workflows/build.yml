@@ -3,7 +3,7 @@ name: SonarCloud Scan
 on:
   push:
     branches:
-      - Group5Azure
+      - main
     paths:
       - '02-backend/spring-boot-ecommerce/spring-boot-ecommerce/**'
   pull_request:

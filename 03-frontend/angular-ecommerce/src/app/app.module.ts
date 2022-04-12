@@ -31,6 +31,7 @@ import { OktaAuth } from '@okta/okta-auth-js';
 import { MembersPageComponent } from './components/members-page/members-page.component';
 import { OrderHistoryComponent } from './components/order-history/order-history.component';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
+import { AdminComponent } from './components/admin/admin.component';
 
 const oktaConfig = Object.assign({
   onAuthRequired: (OktaAuthGuard, injector) => {
@@ -45,6 +46,7 @@ const oktaAuth = new OktaAuth(oktaConfig);
 
 // order of routes important, first match wins
 const routes: Routes = [
+  {path: 'admin', component: AdminComponent, canActivate: [ OktaAuthGuard ]},
   {path: 'order-history', component: OrderHistoryComponent, canActivate: [ OktaAuthGuard ]},
   {path: 'members', component: MembersPageComponent, canActivate: [ OktaAuthGuard ]},
 
@@ -75,7 +77,8 @@ const routes: Routes = [
     LoginComponent,
     LoginStatusComponent,
     MembersPageComponent,
-    OrderHistoryComponent
+    OrderHistoryComponent,
+    AdminComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

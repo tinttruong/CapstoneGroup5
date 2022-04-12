@@ -51,36 +51,30 @@ public class OrderTest {
 	 * is in descending order
 	 */
 	@Test
-	public void testfindByCustomerEmailOrderByDateCreatedDesc() throws ParseException {
+	public void testFindByCustomerEmailOrderByDateCreatedDesc() throws ParseException {
 		
 		Pageable pageable = PageRequest.of(0, 10);
 
 		String testEmail = "test.email@test.com";
-//		
+
 		Order o1 = new Order();
 		Order o2 = new Order();
 		Order o3 = new Order();
 		Order o4 = new Order();
-//		Order o5 = new Order();
-//		
+
 		Customer c1 = new Customer();
 		Customer c2 = new Customer();
-//		Customer c3 = new Customer();
-//		Customer c4 = new Customer();
-//		Customer c5 = new Customer();
 
 		String dateString1 = "2022-03-24 16:06:22.023";
 		String dateString2 = "2022-03-21 13:30:21.012";
 		String dateString3 = "2022-03-22 12:06:00.523";
 		String dateString4 = "2022-03-17 14:50:26.057";
-//		String dateString5 = "2022-03-24 14:05:53.158";
 
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 		Date d1 = df.parse(dateString1);
 		Date d2 = df.parse(dateString2);
 		Date d3 = df.parse(dateString3);
 		Date d4 = df.parse(dateString4);
-//		Date d5 = df.parse(dateString5);
 
 		System.out.println("d1: " + d1);
 
@@ -89,25 +83,17 @@ public class OrderTest {
 		o2.setDateCreated(d2);
 		o3.setDateCreated(d3);
 		o4.setDateCreated(d4);
-//		o5.setDateCreated(d5);
 
 		c1.setEmail(testEmail);
 		c2.setEmail("wrong.email@test.com");
-//		c3.setEmail(testEmail);
-//		c4.setEmail(testEmail);
-//		c5.setEmail(testEmail);
 
 		o1.setCustomer(c1);
 		o2.setCustomer(c1);
 		o3.setCustomer(c1);
 		o4.setCustomer(c2);
-//		o5.setCustomer(c5);
 
 		custRepo.save(c1);
 		custRepo.save(c2);
-//		custRepo.save(c3);
-//		custRepo.save(c4);
-//		custRepo.save(c5);
 
 		System.out.println("First Customer Id  " + c1.getId());
 		System.out.println("Second Customer Id " + c2.getId());
@@ -116,7 +102,6 @@ public class OrderTest {
 		orderRepo.save(o2);
 		orderRepo.save(o3);
 		orderRepo.save(o4);
-//		orderRepo.save(o5);
 
 		o1.setDateCreated(d1);
 		System.out.println("o1 date created: " + o1.getDateCreated());

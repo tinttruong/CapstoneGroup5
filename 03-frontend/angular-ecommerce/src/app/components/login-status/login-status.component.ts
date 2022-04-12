@@ -10,6 +10,7 @@ import { OktaAuth } from '@okta/okta-auth-js';
 export class LoginStatusComponent implements OnInit {
 
   isAuthenticated: boolean = false;
+  isAdmin: boolean = false;
   userFullName: string;
   storage: Storage = sessionStorage;
 
@@ -37,6 +38,8 @@ export class LoginStatusComponent implements OnInit {
 
           // retrieve the user's email from authentication response
           const theEmail = res.email;
+          this.isAdmin = res["groups"].includes("Admin");
+          this.storage.setItem("isAdmin", JSON.stringify(this.isAdmin));
 
           // now store the email in browser storage
           this.storage.setItem('userEmail', JSON.stringify(theEmail));
@@ -48,5 +51,6 @@ export class LoginStatusComponent implements OnInit {
   logout() {
     // terminates the session with Okta and removes current tokens.
     this.oktaAuth.signOut();
+		this.storage.clear();
   }
 }

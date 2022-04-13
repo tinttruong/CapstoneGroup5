@@ -59,7 +59,7 @@ public class CheckoutServiceImpl implements CheckoutService {
 		// populate order with orderItems
 
 		Set<OrderItem> orderItems = purchase.getOrderItems();
-		orderItems.forEach(item -> order.add(item));
+		orderItems.forEach(order::add);
 		for (OrderItem orders : orderItems) {
           Optional<Product> orderFromDB = productRepository.findById(orders.getProductId());
           if(orderFromDB.isPresent()){

@@ -207,7 +207,7 @@ public class ProductTest {
 		Page<Product> prodPage = prodRepo.findByCategoryId(id, pageable);
 		List<Product> prodList = prodPage.toList();
 
-		Assertions.assertEquals(prodList.size(), 0);
+		Assertions.assertEquals(0,prodList.size());
 	}
 
 	/*

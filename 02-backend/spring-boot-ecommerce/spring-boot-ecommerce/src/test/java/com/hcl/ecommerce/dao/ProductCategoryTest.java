@@ -26,7 +26,7 @@ import static org.mockito.Mockito.verify;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(MockitoExtension.class)
 @DataJpaTest
-public class ProductCategoryTest {
+class ProductCategoryTest {
 
     // Required Repos
     @Autowired

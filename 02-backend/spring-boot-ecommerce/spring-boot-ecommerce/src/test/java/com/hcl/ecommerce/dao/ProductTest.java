@@ -27,7 +27,7 @@ import com.stripe.model.Application;
 @EnableAutoConfiguration
 @EntityScan(basePackages = { "com.hcl.ecommerce.entity" })
 @DataJpaTest
-public class ProductTest {
+class ProductTest {
 
 	// Required Repos
 	@Autowired

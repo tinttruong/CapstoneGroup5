@@ -16,7 +16,7 @@ import java.util.List;
 @EnableAutoConfiguration
 @EntityScan(basePackages = { "com.hcl.ecommerce.entity" })
 @DataJpaTest
-public class StateTest {
+class StateTest {
 
         // Required Repos
         @Autowired

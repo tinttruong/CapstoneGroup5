@@ -26,7 +26,7 @@ import com.hcl.ecommerce.entity.Order;
 @EnableAutoConfiguration
 @EntityScan(basePackages = { "com.hcl.ecommerce.entity" })
 @DataJpaTest
-public class OrderTest {
+class OrderTest {
 
 	@Autowired
 	private OrderRepository orderRepo;

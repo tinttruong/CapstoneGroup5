@@ -11,6 +11,9 @@ jobs:
   sonarcloud:
     name: SonarCloud
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: './03-frontend/angular-ecommerce'
     steps:
       - uses: actions/checkout@v2
         with:

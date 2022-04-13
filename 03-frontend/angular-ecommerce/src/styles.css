@@ -769,7 +769,7 @@ footer ul li a{
 }
 footer{
   background:#232324;
-  z-index:1;
+  z-index: -1;
   position:relative;
   text-align:center
 }

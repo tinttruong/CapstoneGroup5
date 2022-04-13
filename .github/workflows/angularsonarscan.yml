@@ -27,7 +27,7 @@ jobs:
             -Dsonar.projectKey=capstoneproject_CapstoneGroup5
             -Dsonar.language=ts
             -Dsonar.exclusions=**/node_modules/**
-            -Dsonar.tests=**/03-frontend/angular-ecommerce/src/**
+            -Dsonar.tests=src
             -Dsonar.test.inclusions=**/*.spec.ts
             -Dsonar.typescript.lcov.reportPaths=**/coverage/angular-ecommerce/lcov.info
             

@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - main
-      paths:
+    paths:
       - '03-frontend/angular-ecommerce/**'
   pull_request:
     types: [opened, synchronize, reopened]

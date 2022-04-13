@@ -9,7 +9,7 @@ on:
     types: [opened, synchronize, reopened]
 defaults:
   run:
-    working-directory: '03-frontend/angular-ecommerce'
+    working-directory: '03-frontend/angular-ecommerce/'
 jobs:
   sonarcloud:
     name: SonarCloud

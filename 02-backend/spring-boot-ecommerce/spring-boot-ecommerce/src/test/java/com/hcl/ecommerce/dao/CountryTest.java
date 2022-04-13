@@ -90,7 +90,7 @@ public class CountryTest {
     }
 
     @Test
-    public void testCreateCountry() {
+    void testCreateCountry() {
 
         System.out.println("TEST CREATE CRUD OPERATION");
 
@@ -109,7 +109,7 @@ public class CountryTest {
     }
 
     @Test
-    public void testReadCountry() {
+    void testReadCountry() {
 
         System.out.println("TEST READ CRUD OPERATION");
 
@@ -127,7 +127,7 @@ public class CountryTest {
     }
 
     @Test
-    public void testUpdateCountry() {
+    void testUpdateCountry() {
 
         System.out.println("TEST UPDATE CRUD OPERATION");
 
@@ -143,13 +143,13 @@ public class CountryTest {
 
         System.out.println("ID: " + id + "\nName: " + countryUpdate.getName());
         String newName = "United States of America";
-        Assertions.assertTrue(countryUpdate.getName() == newName);
+        Assertions.assertSame(countryUpdate.getName(), newName);
 
         System.out.println("=============================");
     }
 
     @Test
-    public void testDeleteCountry() {
+    void testDeleteCountry() {
 
         System.out.println("TEST UPDATE CRUD OPERATION");
 

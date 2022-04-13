@@ -61,8 +61,6 @@ public class CheckoutServiceImpl implements CheckoutService {
 		Set<OrderItem> orderItems = purchase.getOrderItems();
 		orderItems.forEach(item -> order.add(item));
 		for (OrderItem orders : orderItems) {
-          // log.debug("Got order item of id: " +orders.getProductId() + " it has an
-          // quantity of " + orders.getQuantity());
           Optional<Product> orderFromDB = productRepository.findById(orders.getProductId());
           if(orderFromDB.isPresent()){
               int decrementAmount = orderFromDB.get().getUnitsInStock() - orders.getQuantity();

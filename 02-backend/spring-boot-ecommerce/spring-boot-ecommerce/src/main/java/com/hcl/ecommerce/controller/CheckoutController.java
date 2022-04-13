@@ -37,9 +37,7 @@ public class CheckoutController {
 		
 		log.info("Purchase: " + purchase);
 		
-		PurchaseResponse purchaseResponse = checkoutService.placeOrder(purchase);
-		
-		return purchaseResponse;
+		return checkoutService.placeOrder(purchase);
 	}
 	
 	@PostMapping("/payment-intent")

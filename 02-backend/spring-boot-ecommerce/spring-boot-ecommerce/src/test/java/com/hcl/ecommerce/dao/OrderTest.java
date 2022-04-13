@@ -22,37 +22,36 @@ import org.springframework.transaction.annotation.Transactional;
 import com.hcl.ecommerce.entity.Customer;
 import com.hcl.ecommerce.entity.Order;
 
-@ContextConfiguration(classes = {OrderRepository.class})
+@ContextConfiguration(classes = { OrderRepository.class })
 @EnableAutoConfiguration
-@EntityScan(basePackages = {"com.hcl.ecommerce.entity"})
+@EntityScan(basePackages = { "com.hcl.ecommerce.entity" })
 @DataJpaTest
 public class OrderTest {
-	
+
 	@Autowired
 	private OrderRepository orderRepo;
-	
+
 	@Autowired
 	private CustomerRepository custRepo;
-	
-	
+
 	@Test
-	public void testOrderExists() {
-		
+	void testOrderExists() {
+
 		Order o1 = new Order();
 		orderRepo.save(o1);
-		
+
 		System.out.println(o1.getId());
 		Assertions.assertTrue(o1.getId() > 0);
 	}
-	
+
 	/*
 	 * Confirm query method returns orders belonging
 	 * only to expected email and the order date
 	 * is in descending order
 	 */
 	@Test
-	public void testFindByCustomerEmailOrderByDateCreatedDesc() throws ParseException {
-		
+	void testFindByCustomerEmailOrderByDateCreatedDesc() throws ParseException {
+
 		Pageable pageable = PageRequest.of(0, 10);
 
 		String testEmail = "test.email@test.com";
@@ -110,21 +109,22 @@ public class OrderTest {
 		o4.setDateCreated(d4);
 
 		Page<Order> orderPage = orderRepo.findByCustomerEmailOrderByDateCreatedDesc(testEmail, pageable);
-		
+
 		List<Order> orderList = orderPage.toList();
 
 		System.out.println("Size of orderList: " + orderList.size());
 
 		for (Order order : orderList) {
-			
+
 			System.out.println("Retrieved customer email: " + order.getCustomer().getEmail());
 			Assertions.assertTrue(order.getCustomer().getEmail().equalsIgnoreCase(testEmail));
 		}
-		
+
 		for (int i = 0; i < orderList.size() - 1; i++) {
-			
+
 			System.out.println("Date order was created: " + orderList.get(i).getDateCreated());
-			Assertions.assertTrue(orderList.get(i).getDateCreated().compareTo(orderList.get(i + 1).getDateCreated()) > 0);
+			Assertions
+					.assertTrue(orderList.get(i).getDateCreated().compareTo(orderList.get(i + 1).getDateCreated()) > 0);
 		}
 		System.out.println("Date order was created: " + orderList.get(orderList.size() - 1).getDateCreated());
 	}

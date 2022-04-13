@@ -41,7 +41,7 @@ class CustomerRepositoryTest {
         Customer retrievedCustomer = this.customerRepository.findByEmail("jane.doe@example.org");
         System.out.println(retrievedCustomer.getFirstName() + " " + retrievedCustomer.getLastName());
 
-        Assertions.assertTrue(retrievedCustomer.getEmail() == customer.getEmail());
+        Assertions.assertSame(retrievedCustomer.getEmail(), customer.getEmail());
     }
 
     @Test
@@ -63,7 +63,7 @@ class CustomerRepositoryTest {
         Customer retrievedCustomer = this.customerRepository.findByEmail("john.doe@example.org");
         System.out.println(retrievedCustomer.getFirstName() + " " + retrievedCustomer.getLastName());
 
-        Assertions.assertFalse(retrievedCustomer.getEmail() == customer.getEmail());
+        Assertions.assertNotSame(retrievedCustomer.getEmail(),customer.getEmail());
     }
 
     @Test

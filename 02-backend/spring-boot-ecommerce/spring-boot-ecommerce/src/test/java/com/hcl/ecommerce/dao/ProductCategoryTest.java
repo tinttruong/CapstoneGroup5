@@ -34,7 +34,7 @@ public class ProductCategoryTest {
 
 
     @BeforeAll
-    public void setUp() {
+    void setUp() {
 
         ProductCategory pc1 = ProductCategory.builder()
                 .categoryName("Test Category")
@@ -54,7 +54,7 @@ public class ProductCategoryTest {
 
 
     @Test
-    public void testCreateProductCategory() {
+    void testCreateProductCategory() {
 
         ProductCategory pc3 = ProductCategory.builder()
                 .categoryName("Test Category 2")
@@ -68,7 +68,7 @@ public class ProductCategoryTest {
     }
 
     @Test
-    public void testReadProductCategory() {
+    void testReadProductCategory() {
 
         List<ProductCategory> prodCatList = prodCatRepo.findAll();
 
@@ -82,7 +82,7 @@ public class ProductCategoryTest {
     }
 
     @Test
-    public void testUpdateProductCategory() {
+    void testUpdateProductCategory() {
 
         ProductCategory pcTest = prodCatRepo.getById(1L);
 
@@ -116,7 +116,7 @@ public class ProductCategoryTest {
     }
 
     @Test
-    public void testDeleteProductCategory() {
+    void testDeleteProductCategory() {
 
         ProductCategory pcDelete = prodCatRepo.getById(1L);
         System.out.println("Category for deletion:\n" + "Name: " + pcDelete.getCategoryName()

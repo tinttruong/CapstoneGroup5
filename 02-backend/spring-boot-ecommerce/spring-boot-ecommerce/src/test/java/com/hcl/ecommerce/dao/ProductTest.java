@@ -23,25 +23,25 @@ import com.hcl.ecommerce.entity.Product;
 import com.hcl.ecommerce.entity.ProductCategory;
 import com.stripe.model.Application;
 
-@ContextConfiguration(classes = {ProductRepository.class})
+@ContextConfiguration(classes = { ProductRepository.class })
 @EnableAutoConfiguration
-@EntityScan(basePackages = {"com.hcl.ecommerce.entity"})
+@EntityScan(basePackages = { "com.hcl.ecommerce.entity" })
 @DataJpaTest
 public class ProductTest {
-	
+
 	// Required Repos
 	@Autowired
 	private ProductRepository prodRepo;
-	
+
 	@Autowired
 	private ProductCategoryRepository prodCatRepo;
-	
+
 	// Commonly used objects
 	private Date testCreatedDate = new Date();
 	private Date testUpdatedDate = new Date();
-	
+
 	BigDecimal price = new BigDecimal(9.99);
-	
+
 	private Product p1;
 	private Product p2;
 	private Product p3;
@@ -49,8 +49,7 @@ public class ProductTest {
 	private Product p5;
 	private ProductCategory prodCat;
 	private ProductCategory prodCat2;
-	
-	
+
 	@BeforeEach
 	public void setUp() {
 
@@ -146,52 +145,51 @@ public class ProductTest {
 
 		System.out.println("\n=========================\n");
 	}
-	
+
 	/*
 	 * Sample test to ensure JUnit is set up properly
 	 */
 	@Test
-	public void testSample() {
-		
+	void testSample() {
+
 		int val = 1;
 
 		Assertions.assertEquals(1, val);
 		Assertions.assertNotEquals(2, val);
 	}
 
-	
 	/*
-	 * ==================== TEST QUERY METHODS ==================== 
+	 * ==================== TEST QUERY METHODS ====================
 	 */
 	/*
 	 * Confirms that any and all returned products belong to the
 	 * appropriate Category based on the category variable's id
 	 */
 	@Test
-	public void testProductFindByCategoryIdHappy() {
+	void testProductFindByCategoryIdHappy() {
 
 		System.out.println("FIND BY CATEGORY ID HAPPY");
 
 		Pageable pageable = PageRequest.of(0, 10);
 
 		Long id = 1L;
-		
+
 		Page<Product> prodPage = prodRepo.findByCategoryId(id, pageable);
 		List<Product> prodList = prodPage.toList();
-		
+
 		for (Product product : prodList) {
-			
+
 			System.out.println(product.getCategory().getCategoryName());
 			Assertions.assertEquals(1, (long) product.getCategory().getId());
 		}
 	}
-	
+
 	/*
 	 * Confirms that finding by category Id which does
 	 * not exist will return an empty result
 	 */
 	@Test
-	public void testProductFindByCategoryIdUnHappy() {
+	void testProductFindByCategoryIdUnHappy() {
 
 		System.out.println("FIND BY CATEGORY ID UNHAPPY");
 
@@ -203,22 +201,22 @@ public class ProductTest {
 		}
 
 		Pageable pageable = PageRequest.of(0, 10);
-		
+
 		Long id = 99999L;
-		
+
 		Page<Product> prodPage = prodRepo.findByCategoryId(id, pageable);
 		List<Product> prodList = prodPage.toList();
-		
-		Assertions.assertTrue(prodList.size() == 0);
+
+		Assertions.assertEquals(prodList.size(), 0);
 	}
-	
+
 	/*
 	 * Confirms findByNameContaining query method
 	 * returns products only containing that string
 	 * or substring
 	 */
 	@Test
-	public void testProductFindByNameContainingHappy() {
+	void testProductFindByNameContainingHappy() {
 
 		System.out.println("FIND BY NAME CONTAINING HAPPY");
 
@@ -227,23 +225,22 @@ public class ProductTest {
 
 		Page<Product> prodPage = prodRepo.findByNameContaining(search, pageable);
 		List<Product> prodList = prodPage.toList();
-		
+
 		if (prodList.size() > 0) {
-			
+
 			for (Product product : prodList) {
-			
+
 				System.out.println(product.getName());
 				Assertions.assertTrue(product.getName().contains(search));
 			}
-		}
-		else {
-			
+		} else {
+
 			System.out.println("No matches found when matches were expected");
 			Assertions.fail();
 		}
-			
+
 	}
-	
+
 	/*
 	 * Confirms findByNameContaining query method
 	 * returns products only containing that string
@@ -251,50 +248,48 @@ public class ProductTest {
 	 * Checks unhappy path if no string is found
 	 */
 	@Test
-	public void testProductFindByNameContainingUnHappy() {
+	void testProductFindByNameContainingUnHappy() {
 
 		System.out.println("FIND BY NAME CONTAINING UNHAPPY");
 
 		Pageable pageable = PageRequest.of(0, 10);
 		String search = "asdfsdfaser232d";
-		
+
 		Page<Product> prodPage = prodRepo.findByNameContaining(search, pageable);
 		List<Product> prodList = prodPage.toList();
 
 		Assertions.assertEquals(0, prodList.size());
 	}
-	
-	
-	
+
 	/*
 	 * ==================== TEST CRUD OPERATIONS ====================
 	 */
-	
-	/* 
-	* JUnit test for Saving Product to Database
-	* tests the product was successfully saved
-	* by checking if the auto generated ID was 
-	* created.
-	*/
+
+	/*
+	 * JUnit test for Saving Product to Database
+	 * tests the product was successfully saved
+	 * by checking if the auto generated ID was
+	 * created.
+	 */
 	@Test
-	public void testCreateProduct() {
+	void testCreateProduct() {
 
 		System.out.println("CRATE PRODUCT");
 
 		prodCatRepo.save(prodCat);
 		prodRepo.save(p1);
-		
+
 		System.out.println("Test Create product: " + p1.toString());
-		
+
 		Assertions.assertTrue(p1.getId() > 0);
 	}
-	
+
 	/*
 	 * Test product repository ability to GET a product
 	 * from the MySQL db
 	 */
 	@Test
-	public void testGetProduct() {
+	void testGetProduct() {
 
 		System.out.println("GET PRODUCT");
 
@@ -308,13 +303,13 @@ public class ProductTest {
 
 		Assertions.assertSame(prodRepo.getById(id), expectedProd);
 	}
-	
+
 	/*
 	 * Tests product repository's ability to update
 	 * products
 	 */
 	@Test
-	public void testUpdateProduct() {
+	void testUpdateProduct() {
 
 		System.out.println("UPDATE PRODUCT");
 
@@ -323,31 +318,31 @@ public class ProductTest {
 
 		prodCatRepo.save(prodCat);
 		prodRepo.save(p1);
-		
+
 		System.out.println("Id: " + p1.getId() + "\nName: " + prodRepo.getById(p1.getId()).getName() + "\n");
 		oldName = prodRepo.getById(p1.getId()).getName();
-		
+
 		String testName = "New Test Name";
 		prodRepo.getById(p1.getId()).setName(testName);
-		
+
 		System.out.println("Id: " + p1.getId() + "\nName: " + prodRepo.getById(p1.getId()).getName() + "\n");
 		newName = prodRepo.getById(p1.getId()).getName();
 
-		Assertions.assertFalse(oldName == newName);
+		Assertions.assertNotSame(oldName, newName);
 	}
-	
+
 	/*
 	 * Tests product repository to delete
 	 * products from the repo
 	 */
 	@Test
-	public void testDeleteProduct() {
+	void testDeleteProduct() {
 
 		System.out.println("DELETE PRODUCT");
 
 		prodRepo.save(p1);
 		prodRepo.save(p2);
-		
+
 		Long testProdId = p1.getId();
 
 		System.out.println("Delete product with id: " + testProdId);
@@ -355,13 +350,13 @@ public class ProductTest {
 		Assertions.assertNotNull(prodRepo.getById(p1.getId()));
 
 		prodRepo.delete(prodRepo.getById(testProdId));
-		
+
 		List<Product> prodList = prodRepo.findAll();
 
 		for (Product product : prodList) {
 			System.out.println(product.getId());
 		}
-		
+
 		Assertions.assertFalse(prodList.contains(p1));
 	}
 }
